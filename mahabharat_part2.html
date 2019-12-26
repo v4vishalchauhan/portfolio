@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Blogs</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <link rel="shortcut icon" href="assets/images/profile.png"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+    
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/monokai-sublime.min.css">
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-5.css">
+    
+
+</head> 
+
+<body>
+    
+    <header class="header text-center">	    
+	    <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Game of AI</a></h1>
+        
+	    <nav class="navbar navbar-expand-lg navbar-dark" >
+           
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/profile.png" alt="image" >			
+					
+					<div class="bio mb-3">Namaskar,I am Vishal Nath Chauhan.I am a Tech enthusiastic guy,i loves to solve day to day life problems with the help of technology<br><a href="about.html">Find out more about me</a></div><!--//bio-->
+					<ul class="social-list list-inline py-3 mx-auto">
+
+			            <li class="list-inline-item"><a href="https://www.linkedin.com/in/vishal-chauhan-3b23a3145"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://github.com/v4vishalchauhan"><i class="fab fa-github-alt fa-fw"></i></a></li>
+
+			        </ul><!--//social-list-->
+			        <hr> 
+				</div><!--//profile-section-->
+				
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item">
+					    <a class="nav-link" href="blog-list.html"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="blog-post.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Blog Post</a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="about.html"><i class="fas fa-user fa-fw mr-2"></i>About Me</a>
+					</li>
+				</ul>
+				
+				<div class="my-2 my-md-3">
+					
+				    <a class="btn btn-primary" href="https://www.linkedin.com/in/vishal-chauhan-3b23a3145" target="_blank">Get in Touch</a>
+				    
+				</div>
+			</div>
+		</nav>
+    </header>
+    
+    <div class="main-wrapper">
+	    
+	    <article class="blog-post px-3 py-5 p-md-5">
+		    <div class="container">
+			    <header class="blog-post-header">
+				    <h2 class="title mb-2">Mahabharat<h6>Understanding relationship between characters of Mahabharat using <b>Word2Vec</b> Part 2</h6></h2>
+				    <div class="meta mb-3"><span class="date">Published 3 months ago</span><span class="time">5 min read</span><span class="comment"><a href="#">4 comments</a></span></div>
+			    </header>
+			    
+			    <div class="blog-post-body">
+				    <figure class="blog-banner">
+				        <a href="Lord Krishna's Quote"><img class="img-fluid" src="assets/images/blog/mahabharat.jpg" alt="image"></a>
+				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">Google images</a></figcaption>
+				    </figure>
+	<p>
+		In part 1 of we understoood the intuition of <b>Word2Vec</b>.Now let's see the code of it.<br>
+		<br>
+		Let's start with importing all the libraries<br>
+<!-- HTML generated using hilite.me --><div style="background: #d3d3d3; overflow:auto;width:auto;border:#eea73b;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">nltk</span> 
+<span style="color: #000000">nltk</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">download</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;punkt&#39;</span><span style="color: #000000; font-weight: bold">)</span>
+<span style="color: #000000">nltk</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">download</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;stopwords&#39;</span><span style="color: #000000; font-weight: bold">)</span>
+<span style="color: #204a87; font-weight: bold">from</span> <span style="color: #000000">nltk</span> <span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">word_tokenize</span><span style="color: #000000; font-weight: bold">,</span><span style="color: #000000">sent_tokenize</span>
+<span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">re</span>
+<span style="color: #204a87; font-weight: bold">from</span> <span style="color: #000000">nltk.corpus</span> <span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">stopwords</span>
+<span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">gensim.models.word2vec</span> <span style="color: #204a87; font-weight: bold">as</span> <span style="color: #000000">w2v</span>
+</pre></div>
+<br>
+Now read the text file and make a string of it.<br><br>
+<!-- HTML generated using hilite.me --><div style="background: #d3d3d3; overflow:auto;width:auto;border:#eea73b;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000">data_path</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;mb.txt&#39;</span>
+<span style="color: #204a87; font-weight: bold">with</span> <span style="color: #204a87">open</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">data_path</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;r&#39;</span><span style="color: #000000; font-weight: bold">)</span> <span style="color: #204a87; font-weight: bold">as</span> <span style="color: #000000">f</span><span style="color: #000000; font-weight: bold">:</span>
+    <span style="color: #000000">lines</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">f</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">read</span><span style="color: #000000; font-weight: bold">()</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">split</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;\n&#39;</span><span style="color: #000000; font-weight: bold">)</span>
+
+<span style="color: #000000">corpus</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;&#39;</span>
+<span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">i</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">lines</span><span style="color: #000000; font-weight: bold">:</span>
+    <span style="color: #000000">corpus</span><span style="color: #ce5c00; font-weight: bold">+=</span><span style="color: #000000">i</span>
+<span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">corpus</span><span style="color: #000000; font-weight: bold">[:</span><span style="color: #0000cf; font-weight: bold">50</span><span style="color: #000000; font-weight: bold">])</span>    
+</pre></div>
+<br>
+
+Now apply sentence tokenization and do preprocessing like removing stopwords.<br><br>
+<!-- HTML generated using hilite.me --><div style="background: #d3d3d3; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000">sentences</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">sent_tokenize</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">corpus</span><span style="color: #000000; font-weight: bold">)</span>
+<span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #204a87">len</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">sentences</span><span style="color: #000000; font-weight: bold">))</span>
+
+<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">clean_sent</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">raw</span><span style="color: #000000; font-weight: bold">):</span>
+    <span style="color: #000000">clean</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">re</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">sub</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;[^a-zA-Z]&#39;</span><span style="color: #000000; font-weight: bold">,</span><span style="color: #4e9a06">&#39; &#39;</span><span style="color: #000000; font-weight: bold">,</span><span style="color: #000000">raw</span><span style="color: #000000; font-weight: bold">)</span>
+    <span style="color: #000000">words</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">clean</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">split</span><span style="color: #000000; font-weight: bold">()</span>
+    <span style="color: #204a87; font-weight: bold">return</span> <span style="color: #000000">words</span>
+
+<span style="color: #000000">raw_sent</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #000000">clean_sent</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">i</span><span style="color: #000000; font-weight: bold">)</span> <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">i</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">sentences</span><span style="color: #000000; font-weight: bold">]</span>
+</pre></div>
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #d3d3d3; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000">sent</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000; font-weight: bold">[]</span>
+<span style="color: #000000">stop</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87">list</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">stopwords</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">words</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;english&#39;</span><span style="color: #000000; font-weight: bold">))</span>
+<span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">stop</span><span style="color: #000000; font-weight: bold">)</span>
+<span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">i</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">raw_sent</span><span style="color: #000000; font-weight: bold">:</span>
+    <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">j</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">i</span><span style="color: #000000; font-weight: bold">:</span>
+        <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #000000">j</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">lower</span><span style="color: #000000; font-weight: bold">()</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">stop</span><span style="color: #000000; font-weight: bold">:</span>
+            <span style="color: #000000">i</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">remove</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">j</span><span style="color: #000000; font-weight: bold">)</span>
+    <span style="color: #000000">sent</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">append</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">i</span><span style="color: #000000; font-weight: bold">)</span>
+<span style="color: #000000">raw_count</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">0</span>
+<span style="color: #000000">sent_count</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">0</span>
+<span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">i</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">raw_sent</span><span style="color: #000000; font-weight: bold">:</span>
+    <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">j</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">i</span><span style="color: #000000; font-weight: bold">:</span>
+        <span style="color: #000000">raw_count</span><span style="color: #ce5c00; font-weight: bold">+=</span><span style="color: #0000cf; font-weight: bold">1</span>
+<span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">i</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">sent</span><span style="color: #000000; font-weight: bold">:</span>
+    <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">j</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">i</span><span style="color: #000000; font-weight: bold">:</span>
+        <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #000000">j</span> <span style="color: #ce5c00; font-weight: bold">==</span><span style="color: #4e9a06">&#39;the&#39;</span> <span style="color: #204a87; font-weight: bold">or</span> <span style="color: #000000">j</span><span style="color: #ce5c00; font-weight: bold">==</span><span style="color: #4e9a06">&#39;The&#39;</span><span style="color: #000000; font-weight: bold">:</span>
+            <span style="color: #000000">sent_count</span><span style="color: #ce5c00; font-weight: bold">+=</span><span style="color: #0000cf; font-weight: bold">1</span>        
+
+<span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">raw_count</span><span style="color: #000000; font-weight: bold">,</span><span style="color: #000000">sent_count</span><span style="color: #000000; font-weight: bold">)</span>
+</pre></div>
+<br>
+Now here comes the important part.We will use gensim library to build and train Word2Vec.<br>
+We wlll use CBOW technique.<br>
+
+<!-- HTML generated using hilite.me --><div style="background: #d3d3d3; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000">model</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">w2v</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">Word2Vec</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">sg</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">1</span><span style="color: #000000; font-weight: bold">,</span>
+    <span style="color: #000000">seed</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
+    <span style="color: #000000">workers</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">8</span><span style="color: #000000; font-weight: bold">,</span>
+    <span style="color: #000000">size</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">100</span><span style="color: #000000; font-weight: bold">,</span>
+    <span style="color: #000000">min_count</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">5</span><span style="color: #000000; font-weight: bold">,</span>
+    <span style="color: #000000">window</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">12</span><span style="color: #000000; font-weight: bold">,</span>
+    <span style="color: #204a87">iter</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">5</span>
+    <span style="color: #000000; font-weight: bold">)</span>
+</pre></div>
+
+Here we have few parameters.Let's understand them.<br>
+
+<ul>
+	<li>sg <br>
+		Its a boolean value.If 1 then skip-gram technique will be used otherwise CBOW.
+	</li>
+	<li>seed<br>
+	Seed for the random number generator. Initial vectors for each word are seeded with a hash of the concatenation of word + str(seed)</li>
+	<li>workers<br>
+	Use these many worker threads to train the model (=faster training with multicore machines).</li>
+	<li>size<br>
+		The size of the dense vector to represent each token or word (i.e. the context or neighboring words).
+	</li>
+
+	<li>min_count<br>
+	Minimium frequency count of words. The model would ignore words that do not satisfy the min_count.</li>
+
+	<li>window<br>
+	 Maximum distance between the current and predicted word within a sentence.If distance is greater than window size then those words wont be considered.</li>
+	 <li>iter<br>
+	 Number of iterations (epochs) over the corpus.</li>
+</ul>
+</p>			
+		
+					<script>
+					    /**
+					     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT 
+					     *  THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR 
+					     *  PLATFORM OR CMS.
+					     *  
+					     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: 
+					     *  https://disqus.com/admin/universalcode/#configuration-variables
+					     */
+					    
+					    var disqus_config = function () {
+					        // Replace PAGE_URL with your page's canonical URL variable
+					        this.page.url = PAGE_URL;  
+					        
+					        // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+					        this.page.identifier = PAGE_IDENTIFIER; 
+					    };
+					    
+					    
+					    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+					        var d = document, s = d.createElement('script');
+					        
+					        // IMPORTANT: Replace 3wmthemes with your forum shortname!
+					        s.src = 'https://3wmthemes.disqus.com/embed.js';
+					        
+					        s.setAttribute('data-timestamp', +new Date());
+					        (d.head || d.body).appendChild(s);
+					    })();
+					</script>
+					<noscript>
+					    Please enable JavaScript to view the 
+					    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+					        comments powered by Disqus.
+					    </a>
+					</noscript>
+				</div><!--//blog-comments-section-->
+				
+		    </div><!--//container-->
+	    </article>
+	    
+
+	    
+    
+    </div><!--//main-wrapper-->
+    
+
+
+
+    
+       
+    <!-- Javascript -->          
+    <script src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script> 
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+    
+    <!-- Page Specific JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/blog.js"></script>
+    
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>     
+    
+
+</body>
+</html> 
+

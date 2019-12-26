@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Blogs</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+    
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/monokai-sublime.min.css">
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-5.css">
+    
+
+</head> 
+
+<body>
+    
+    <header class="header text-center">	    
+	    <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Game of AI</a></h1>
+        
+	    <nav class="navbar navbar-expand-lg navbar-dark" >
+           
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/profile.png" alt="image" >			
+					
+					<div class="bio mb-3">Namaskar,I am Vishal Nath Chauhan.I am a Tech enthusiastic guy,i loves to solve day to day life problems with the help of technology<br><a href="about.html">Find out more about me</a></div><!--//bio-->
+					<ul class="social-list list-inline py-3 mx-auto">
+
+			            <li class="list-inline-item"><a href="https://www.linkedin.com/in/vishal-chauhan-3b23a3145"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://github.com/v4vishalchauhan"><i class="fab fa-github-alt fa-fw"></i></a></li>
+
+			        </ul><!--//social-list-->
+			        <hr> 
+				</div><!--//profile-section-->
+				
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item">
+					    <a class="nav-link" href="blog-list.html"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="blog-post.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Blog Post</a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="about.html"><i class="fas fa-user fa-fw mr-2"></i>About Me</a>
+					</li>
+				</ul>
+				
+				<div class="my-2 my-md-3">
+					
+				    <a class="btn btn-primary" href="https://www.linkedin.com/in/vishal-chauhan-3b23a3145" target="_blank">Get in Touch</a>
+				    
+				</div>
+			</div>
+		</nav>
+    </header>
+    
+    <div class="main-wrapper">
+	    
+	    <article class="blog-post px-3 py-5 p-md-5">
+		    <div class="container">
+			    <header class="blog-post-header">
+				    <h2 class="title mb-2">Mahabharat<h6>Understanding relationship between characters of Mahabharat using <b>Word2Vec</b></h6></h2>
+				    <div class="meta mb-3"><span class="date">Published 3 months ago</span><span class="time">5 min read</span><span class="comment"><a href="#">4 comments</a></span></div>
+			    </header>
+			    
+			    <div class="blog-post-body">
+				    <figure class="blog-banner">
+				        <a href="Lord Krishna's Quote"><img class="img-fluid" src="assets/images/blog/mahabharat.jpg" alt="image"></a>
+				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">Google images</a></figcaption>
+				    </figure>
+				    <p><b>F</b>eature Engineering is one of the important pillar of Machine Learning and Deep learning.When it comes to convert text to features we have lots of techniques like Tf-IDf,Bag Of Words,Word2Vec,Glove Vectors.Today we will discuss about Word2Vec.Word2Vec was the revolutionary technique.It brought big change in the field of Natural Language Processing.Word2Vec uses <a href="https://en.wikipedia.org/wiki/Artificial_neural_network"><b>Neural Networks</b></a>,this thing made it apart from other techniques.</p>
+
+
+				    <p>In nutshell Word2Vec converts text to vector and then we put that vector as input to Neural Network</p>
+
+
+				    <p>Let's start,We will understand Word2Vec in pieces.First we will start with the <b>dimensions</b>.What do we mean by dimensions in case of text?.<br>In case of text dimension represents quality or attribute ,for example we have data of student.
+				    	<br><img src="assets/images/blog/blog1_graph.jpg"><br>
+				    Here we can see each axis of graph is representing a quality of student.These axes are called dimensions of graph.Here i took only 3 dimensions because we can't plot a 4D graph.If we have more attributes or features or dimensions then can't plot it.But we have computers and they can understand it very well.Now we knows about dimensions let's move on to similarity.<br></p>
+
+ 
+ <p>As per the common sence how we can say that 2 things are similar or not?<br>
+
+ Its simple by comparing their <u>features</u> we can say they are similar or not.If they have common features means they are same otherwise they are not similar.Here in case of computers they also almost same criteria.We have lots of mathematical techniques to compare ,today we will talk about <a href="https://en.wikipedia.org/wiki/Cosine_similarity">Cosine Similarity</a>.In cosine similarity we take inner product of 2 values that measures <a href="https://en.wikipedia.org/wiki/Trigonometric_functions#cos">cosine</a> angle between them.Let's take the following example.Here i took only 2 dimesions to make it simple.Here we have data of 2 students <b>A</b> and <b>B</b>.We are not considering values in graph,right now we are just understanding the intuition.If we want to compare student A and B then we need to take cosine of the angle between them.If cosine returns 0 it means they are totally same and if it returns value -1 then they are totally opposite.The key thing her is if we are getting value greater than 0 means their some features are different.<br>
+
+ <img src="assets/images/blog/blog1_graph2.jpg" height="514" width="700"><br></p>
+
+<p>Now we will discuss about embeddings.As earlier we learnt how we can create vector and how we can put all qualities of and entity in vector.So in embeddings we transform each word of our text in a particular number of dimensions then we map all those vectors to a fixed number of dimensions like 50,100,200 etc.In embedding you will find similar vectors together.This is how it helps us in understanding similarity.<br>
+In following image we put various words in embedding .Now you can see how different words like man and king has some common traits(Each color represents a quality or dimension),woamn and girl also has some common features.As we can see a long red column it means that feature in common in all the words.<img src="assets/images/blog/w2v_1.png" width="800" height="600"><br>
+One of the amazing feature of word embedding is if we add or subtract words trained on embedding we will get aweosme results.Let's look at the following example<br>
+<img src="assets/images/blog/w2v_2.png"><br>
+We can visualize this also.<br>
+<img src="assets/images/blog/w2v_3.png"><br>
+Here as you can see the features of queen and king-man+woman are same.It shows that embeddings are good in understanding features.<br>Now as we have discussed about embedings now we will discuss the techniques used by Word2Vec.Word2Vec uses 2 techniques<br>
+1.Continuous Bag-of-words(CBOW) <br>
+2.Skip-gram<br>
+Before learning training process of Word2Vec,we will discuss about these techniques.<br>
+<br><br>
+<b>Continuous Bag-of-words(CBOW)</b><br>
+In nutshell is used to predict a word given surrounding text(context words).<br><br>
+<img src="assets/images/blog/w2v_4.png"><br>
+Let's see how we train CBOW model.Before training we need to create dataset.For creating dataset we will set a window size let's take it 3.Now we will put first 3 words in context and 4th word will be our target word and 3 words after the target again will be our context .This is how we will convert it into supervised learning problem.Here you can see the example.In this example <b>loves</b> is our target word.<br>
+
+<img src="assets/images/blog/w2v_5.png" width="800"><br>
+After creating dataset we will input this data in one-hot encoded form to a Neural Network ,we will use last layer as Softmax activation so neural network will predict word with the maximum probability.<br>
+<img src="assets/images/blog/w2v_6.png" width="1000">
+Predicting word animal using dog as input<br>
+<img src="assets/images/blog/w2v_7.ppm">
+Continuous Bag-of-words model structure<br>
+
+<b>Skip-gram</b><br>
+Skip-gram is opposite of CBOW,here we have single word and with the help of it we need to predict context words.Now we will create the dataset again but in little bit different format.<br>
+<img src="assets/images/blog/w2v_8.png" width="950" height="500">
+Here you can see our target word was <b>not</b> so we took 2 words before it and 2 words after it as context.Our window size here is 2.<br>
+Now if we take another word<br><img src="assets/images/blog/w2v_9.png"><br>
+Here you can see only 2 words created such a long dataset.So on our whole text,this will create millions of daatpoints that's not so efficient.<br>So we will use a special technique known as Negative Sampling.<br>
+In this technique instead of generating context words, we try to identify the relationship between words,we try to check whether they are  neighbors or not?<br>It will transform our generative model to classification model.<br><img src="assets/images/blog/w2v_10.png" width="950">Here you can see how dataset got changed by using Negative Sampling.This technique reduced our processing time.<br>
+We are almost ready we just need to do a little bit change.As when we will create dataset using negative sampling ,all the rows will have output as 1 as our computer is reading text word by word so all of them will be neighbour.So to remove this loophole we will use negative samples,this samples will change the bias  or you can say our target variable will have equal number of 0 and 1.<br>
+
+<img src="assets/images/blog/w2v_12.png" width="950">
+After adding negative samples.Let''s look at training of Word2Vec.<br>
+For training process we will create 2 matrices, a embedding and context matrix.Now dimension of both matrices will be vocab_size*embedding_size(vocab_size means number of unique words in text,embedding_size means number of dimensions in which we want to put the data.) 
+We will read data from embedding matrix and its context words from context matrix ,multiply them and then apply sigmoid function.We will have the output probabilities and now check the error and update the weights.Its just like simple neural network's training process.<br>
+Hush!! we did it now we will see the code of it.We will do the coding part in our next part.<br>
+<a href="mahabharat_part2.html">Checkout next part here.</a><br><br>
+<b>References:</b><br>
+<a href="http://jalammar.github.io/">Jalammer.github.io</a><br>
+Image credits:Google
+</p>				
+		
+					<script>
+					    /**
+					     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT 
+					     *  THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR 
+					     *  PLATFORM OR CMS.
+					     *  
+					     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: 
+					     *  https://disqus.com/admin/universalcode/#configuration-variables
+					     */
+					    
+					    var disqus_config = function () {
+					        // Replace PAGE_URL with your page's canonical URL variable
+					        this.page.url = PAGE_URL;  
+					        
+					        // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+					        this.page.identifier = PAGE_IDENTIFIER; 
+					    };
+					    
+					    
+					    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+					        var d = document, s = d.createElement('script');
+					        
+					        // IMPORTANT: Replace 3wmthemes with your forum shortname!
+					        s.src = 'https://3wmthemes.disqus.com/embed.js';
+					        
+					        s.setAttribute('data-timestamp', +new Date());
+					        (d.head || d.body).appendChild(s);
+					    })();
+					</script>
+					<noscript>
+					    Please enable JavaScript to view the 
+					    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+					        comments powered by Disqus.
+					    </a>
+					</noscript>
+				</div><!--//blog-comments-section-->
+				
+		    </div><!--//container-->
+	    </article>
+	    
+
+	    
+    
+    </div><!--//main-wrapper-->
+    
+
+
+
+    
+       
+    <!-- Javascript -->          
+    <script src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script> 
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+    
+    <!-- Page Specific JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/blog.js"></script>
+    
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>     
+    
+
+</body>
+</html> 
+
