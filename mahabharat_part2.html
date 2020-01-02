@@ -143,7 +143,7 @@ Now apply sentence tokenization and do preprocessing like removing stopwords.<br
 <br>
 Now here comes the important part.We will use gensim library to build and train Word2Vec.<br>
 We wlll use CBOW technique.<br>
-
+<br>
 <!-- HTML generated using hilite.me --><div style="background: #d3d3d3; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000">model</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">w2v</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">Word2Vec</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">sg</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">1</span><span style="color: #000000; font-weight: bold">,</span>
     <span style="color: #000000">seed</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
     <span style="color: #000000">workers</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">8</span><span style="color: #000000; font-weight: bold">,</span>
@@ -176,6 +176,90 @@ Here we have few parameters.Let's understand them.<br>
 	 <li>iter<br>
 	 Number of iterations (epochs) over the corpus.</li>
 </ul>
+
+Now we have defined the architecture of model,its time to train it.<br>
+First we will build vocabulary of text corpus then we will train model on text corpus.<br>
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #d3d3d3; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000">model</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">build_vocab</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">sent</span><span style="color: #000000; font-weight: bold">)</span>
+<span style="color: #000000">token_count</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87">len</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">model</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">wv</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">vocab</span><span style="color: #000000; font-weight: bold">)</span>
+<span style="color: #204a87">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">token_count</span><span style="color: #000000; font-weight: bold">)</span>
+<span style="color: #000000">model</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">train</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">sent</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">total_words</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">token_count</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">epochs</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">5</span><span style="color: #000000; font-weight: bold">)</span>
+</pre></div>
+<br>
+Now we are ready,let's see the power of Word2Vec...<br>
+Suppose we want to know the characteristics of Arjuna<br>
+As per the mahabharat Arjuna was the central character,he was the best archer.
+<br><br>
+<!-- HTML generated using hilite.me --><div style="background: #d3d3d3; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000">model</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">most_similar</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Arjuna&#39;</span><span style="color: #000000; font-weight: bold">)</span>
+</pre></div>
+
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000; font-weight: bold">[(</span><span style="color: #4e9a06">&#39;Pandavas&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9978887438774109</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;battle&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9962249994277954</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;warriors&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9952598810195923</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;car&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9948894381523132</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;mighty&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9937595129013062</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;arrows&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9929316639900208</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Bhima&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9926199913024902</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;many&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9922780990600586</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;shafts&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9915999174118042</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;weapons&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9900040626525879</span><span style="color: #000000; font-weight: bold">)]</span>
+</pre></div>
+<br>
+As you can Word2Vec gave top 10 characteristics or words related to Arjuna.Here you can see the words <b>Arrows</b>,<b>Weapons</b>,<b>Warrior</b> so Word2Vec understood the Mahabharat context.Let's see some other examples<br>
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #d3d3d3; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000">model</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">most_similar</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Duryodhana&#39;</span><span style="color: #000000; font-weight: bold">)</span>
+</pre></div>
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000; font-weight: bold">[(</span><span style="color: #4e9a06">&#39;Karna&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9996303915977478</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;forest&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9992613792419434</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Bhimasena&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9992271661758423</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;warrior&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9989930987358093</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;chariot&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9989332556724548</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;heroes&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9989120960235596</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Krishna&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9987683296203613</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;struck&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9987466931343079</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;arrival&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9987463355064392</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Satyaki&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9986773729324341</span><span style="color: #000000; font-weight: bold">)]</span>
+</pre></div>
+
+<br>
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #d3d3d3; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000">model</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">most_similar</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Karna&#39;</span><span style="color: #000000; font-weight: bold">)</span>
+</pre></div>
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000; font-weight: bold">[(</span><span style="color: #4e9a06">&#39;Duryodhana&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9996303915977478</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;forest&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9994339346885681</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Bhimasena&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9992662668228149</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Krishna&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.99922114610672</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;heroes&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9991482496261597</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;struck&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9990301132202148</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;warrior&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9989945888519287</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;sides&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9989802837371826</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;saw&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.9989711046218872</span><span style="color: #000000; font-weight: bold">),</span>
+ <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;various&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #0000cf; font-weight: bold">0.998964786529541</span><span style="color: #000000; font-weight: bold">)]</span>
+</pre></div>
+<br>
+<br>
+We can also see how much 2 words are related.<br><br>
+<!-- HTML generated using hilite.me --><div style="background: #d3d3d3; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000000">model</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">wv</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">similarity</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Arjuna&#39;</span><span style="color: #000000; font-weight: bold">,</span><span style="color: #4e9a06">&#39;arrows&#39;</span><span style="color: #000000; font-weight: bold">)</span>
+</pre></div>
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:#d3d3d3;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000cf; font-weight: bold">0.99293166</span>
+</pre></div>
+<br>
+<br>
+We can visualize the words also.<br>
+Here are few words of vocabulory<br>
+<br>
+
+<img src="assets/images/blog/w2v_map.png" width="900">
+<br>
+You can access the code at <a href="https://github.com/v4vishalchauhan/Mahabharat">Github link</a> <br>
+<br>
+
+That's all for the this blog.I hope you will like it.<br>
+
 </p>			
 		
 					<script>
